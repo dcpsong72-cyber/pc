@@ -1,0 +1,35 @@
+# NOTICE
+
+PixelForge incorporates design assets and specifications from third-party
+open-source projects. We thank their authors.
+
+## PhotoCraft (UI design system, menu catalog, toolbox grammar)
+
+- Source: https://github.com/storytold/photocraft
+- Licence: MIT — https://github.com/storytold/photocraft/blob/main/LICENSE
+- Used here: the 8-theme token values (crates/ui-egui/src/theme.rs), the
+  766-entry Photoshop menu catalog (crates/ui-egui/src/menu_catalog.rs),
+  toolbar metrics/grouping (panels.rs), and the title-bar/dock layout grammar
+  described in docs/ui-design.md. Files: `ui/theme.py`, `ui/menu_catalog.py`,
+  `ui/toolbar.py`, `ui/titlebar.py`, `scripts/gen_menu_catalog.py`.
+- PhotoCraft itself remains a separate Rust project; PixelForge is not
+  affiliated with it. The PhotoCraft engine binary, when attached, is used
+  unmodified for PSD verification.
+
+## Lucide icons
+
+- Source: https://lucide.dev
+- Licence: ISC (see `assets/icons/LICENSE-lucide.txt`)
+- Used here: the SVG icon set in `assets/icons/` (125 files), rendered at
+  runtime by `ui/icons.py`.
+
+## Additional icons
+
+- `assets/icons/lasso-magnetic.svg`, `assets/icons/symmetry-*`: from the
+  Noun Project under CC BY (see the LICENSE files next to each SVG).
+
+## Fonts
+
+- Inter — Licence: SIL Open Font License 1.1 (`assets/fonts/OFL-Inter.txt`)
+- JetBrains Mono — Licence: SIL Open Font License 1.1
+  (`assets/fonts/OFL-JetBrainsMono.txt`)
