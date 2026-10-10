@@ -1,0 +1,44 @@
+name: Windows build (exe + setup)
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build PixelForge.exe (PyInstaller)
+        run: pyinstaller packaging\pixelforge.spec --noconfirm --clean
+
+      - name: Build setup installer (Inno Setup)
+        shell: cmd
+        run: |
+          choco install innosetup -y --no-progress
+          iscc packaging\installer.iss
+
+      - name: Upload portable app
+        uses: actions/upload-artifact@v4
+        with:
+          name: PixelForge-4.0-portable-win64
+          path: dist/PixelForge/
+
+      - name: Upload setup installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: PixelForge-4.0-Setup-win64
+          path: dist/installer/PixelForge-4.0-Setup-win64.exe
